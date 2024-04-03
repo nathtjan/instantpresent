@@ -1,0 +1,92 @@
+*[data-show="0"] {
+    display: none;
+    visibility: hidden;
+}
+
+*[data-show="1"] {
+    display: block;
+    visibility: show;
+}
+
+#display {
+    background-color: black;
+    width: 400px;
+    min-width: 400px;
+    aspect-ratio: 4/3;
+    flex-grow: 1;
+    display: block;
+    position: relative;
+}
+
+#overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+#presentation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.slide {
+    white-space: pre-line;
+}
+
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+#fullscreenIcon {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    padding: 3px;
+    margin: 15px;
+}
+
+#prevPageIcon {
+    display: block;
+    cursor: pointer;
+    padding: 3px;
+    margin: 20px;
+}
+
+#nextPageIcon {
+    display: block;
+    cursor: pointer;
+    padding: 3px;
+    margin: 20px;
+}
+
+#pageNumberInfo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 10px);
+}
+
+#overlay i {
+    visibility: hidden;
+}
+
+#overlay:hover i {
+    visibility: visible;
+}
