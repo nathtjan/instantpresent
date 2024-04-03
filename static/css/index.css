@@ -92,3 +92,7 @@
 #overlay:hover i {
     visibility: visible;
 }
+
+#previewWindowButton {
+    width: 100%;
+}

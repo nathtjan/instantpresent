@@ -18,6 +18,7 @@ function mainInputs() {
     presentationTextInput.addEventListener("keyup", ()=>{updatePresentation(presentationTextInput.value); updateStorage();});
 
     fontSizeInput.addEventListener("input", updateFontSize);
+    updateFontSize();
 
     var previewWindowButton = document.getElementById("previewWindowButton");
     previewWindowButton.addEventListener("click", openPreviewWindow);
