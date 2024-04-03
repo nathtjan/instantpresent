@@ -1,8 +1,5 @@
-function onStorageUpdate(storageEvent) {
-    if (storageEvent.key != presentationId)
-        return;
-    loadPresentation(getPresentationData());
-}
+broadcastChannel = createBroadcastChannel(getPresentationId());
+broadcastChannel.addEventListener("message", (event)=>loadPresentation(event.data))
 
 function getPresentationId() {
     let queryString = window.location.search,
@@ -11,22 +8,9 @@ function getPresentationId() {
     return presentationId;
 }
 
-function getPresentationData() {
-    return JSON.parse(localStorage.getItem(getPresentationId()));
-}
-
 function loadPresentation(presentationData) {
     if (!presentationData)
         return;
     updatePresentation(presentationData.rawPresentationText);
     setFontSize(presentationData.fontSize);
 }
-
-function mainPreview() {
-    let presentationData = getPresentationData();
-    console.log(presentationData);
-    loadPresentation(presentationData);
-}
-
-window.addEventListener("storage", onStorageUpdate);
-window.addEventListener("load", mainPreview);

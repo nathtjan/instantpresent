@@ -3,10 +3,13 @@ function mainInputs() {
         fontSize = fontSizeInput.value + "px";
         fontSizeValue.textContent = fontSize;
         setFontSize(fontSize);
+        sendPresentationData();
     }
 
     function openPreviewWindow() {
-        window.open("/preview.html?presentationId="+presentationId, "_blank", "menubar=false,location=false");
+        let url = "/preview.html?presentationId=" + presentationId;
+        windowProxy = window.open(url, "_blank", "menubar=false,location=false");
+        windowProxy.window.addEventListener("load", sendPresentationData);
     }
 
     var presentationTextInput = document.getElementById("presentationTextInput");

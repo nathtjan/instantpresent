@@ -9,7 +9,8 @@ let activePageIndex,
     fullscreenIcon,
     prevPageIcon,
     nextPageIcon,
-    pageNumberInfo;
+    pageNumberInfo, 
+    broadcastChannel;
 
 
 function mainDisplay() {
@@ -35,6 +36,8 @@ function mainDisplay() {
 
     pageNumberInfo = document.getElementById("pageNumberInfo");
 
+    broadcastChannel = createBroadcastChannel(presentationId);
+
     display.addEventListener("fullscreenchange", updateFullscreenIcon);
 
     updatePageNumber();
@@ -42,10 +45,10 @@ function mainDisplay() {
 }
 
 function updateStorage() {
-    localStorage.setItem(presentationId, JSON.stringify({
+    broadcastChannel.postMessage({
         "rawPresentationText": rawPresentationText,
         "fontSize": fontSize
-    }));
+    });
 }
 
 function updatePresentation(newText, sep="\n\n") {
@@ -62,6 +65,17 @@ function updatePresentation(newText, sep="\n\n") {
     });
     setActivePage(activePageIndex);
     rawPresentationText = newText;
+}
+
+function getPresentationData() {
+    return {
+        "rawPresentationText": rawPresentationText,
+        "fontSize": fontSize
+    };
+}
+
+function sendPresentationData() {
+    broadcastChannel.postMessage(getPresentationData());
 }
 
 
