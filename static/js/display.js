@@ -1,10 +1,11 @@
 let activePageIndex,
     rawPresentationText,
     fontSize,
+    backgroundColor,
+    textColor,
     display,
     presentation,
     presentationId,
-    fontSizeInput,
     fontSizeValue,
     fullscreenIcon,
     prevPageIcon,
@@ -15,7 +16,6 @@ let activePageIndex,
 
 function mainDisplay() {
     activePageIndex = 0;
-    fontSize = 50;
 
     display = document.getElementById("display");
     presentation = document.getElementById("presentation");
@@ -42,16 +42,11 @@ function mainDisplay() {
 
     updatePageNumber();
     setFontSize(fontSize);
+    setBackgroundColor(backgroundColor);
+    setTextColor(textColor);
 }
 
-function updateStorage() {
-    broadcastChannel.postMessage({
-        "rawPresentationText": rawPresentationText,
-        "fontSize": fontSize
-    });
-}
-
-function updatePresentation(newText, sep="\n\n") {
+function setPresentation(newText, sep="\n\n") {
     presentation.replaceChildren();
     slideTexts = newText.split(sep);
     slideTexts.forEach((text, pageIndex) => {
@@ -66,18 +61,6 @@ function updatePresentation(newText, sep="\n\n") {
     setActivePage(activePageIndex);
     rawPresentationText = newText;
 }
-
-function getPresentationData() {
-    return {
-        "rawPresentationText": rawPresentationText,
-        "fontSize": fontSize
-    };
-}
-
-function sendPresentationData() {
-    broadcastChannel.postMessage(getPresentationData());
-}
-
 
 function setActivePage(pageIndex) {
     pageIndex = clamp(pageIndex, 0, presentation.children.length - 1);
@@ -139,15 +122,22 @@ function updateFullscreenIcon() {
     }
 }
 
-function setFontSize(fontSize) {
+function setFontSize(_fontSize) {
     slides = document.getElementsByClassName("slide");
     for (let i = 0; i < slides.length; i++) {
-        slides[i].style.fontSize = fontSize;
+        slides[i].style.fontSize = _fontSize;
     }
+    fontSize = _fontSize;
 }
 
-function elementIsInput(element) {
-    return element == presentationTextInput || element == fontSizeInput;
+function setBackgroundColor(_backgroundColor) {
+    display.style.backgroundColor = _backgroundColor;
+    backgroundColor = _backgroundColor
+}
+
+function setTextColor(_textColor) {
+    display.style.color = _textColor;
+    textColor = _textColor;
 }
 
 window.addEventListener("load", mainDisplay);

@@ -11,6 +11,17 @@ function getPresentationId() {
 function loadPresentation(presentationData) {
     if (!presentationData)
         return;
-    updatePresentation(presentationData.rawPresentationText);
+    setPresentation(presentationData.rawPresentationText);
     setFontSize(presentationData.fontSize);
+    setBackgroundColor(presentationData.backgroundColor);
+    setTextColor(presentationData.textColor);
+    console.log(presentationData);
 }
+
+window.addEventListener("keydown", (event)=>{
+    if (event.key == "ArrowRight") {
+        goToNextPage();
+    } else if (event.key == "ArrowLeft") {
+        goToPrevPage();
+    }
+});
