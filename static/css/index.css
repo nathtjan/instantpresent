@@ -13,8 +13,15 @@
     color: white;
     aspect-ratio: 4/3;
     flex-grow: 1;
+    min-width: 50%;
+    width: 100%;
     display: block;
     position: relative;
+}
+@media screen and (min-width: 1000px) {
+    #display {
+        width: 50%;
+    }
 }
 
 #overlay {
