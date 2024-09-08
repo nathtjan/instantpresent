@@ -106,3 +106,8 @@
 #previewWindowButton {
     width: 100%;
 }
+
+#credit {
+    width: 100%;
+    text-align: center;
+}
