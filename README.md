@@ -5,4 +5,4 @@ Present whatever text you have instantly!
 - Support for multiple window with live synchronization
 
 ## Live demo
-Deployed on netlify: [instantpresent.netlify.app](https://instantpresent.nathtjan.my.id)
+Deployed on netlify: [instantpresent.nathtjan.my.id](https://instantpresent.nathtjan.my.id)
